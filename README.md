@@ -18,14 +18,14 @@ Dans les prochains laboratoires, nous verrons des architectures plus complexes e
 
 > ⚠️ IMPORTANT : Avant de commencer le setup et les activités, veuillez lire la documentation architecturale dans le répertoire `/docs/arc42/docs.pdf`.
 
-### 1. Faites un fork et clonez le dépôt GitLab
+### 1. Faites un fork et clonez le dépôt GitLab [DONE]
 
 ```bash
 git clone https://github.com/guteacher/log430-a25-labo0
 cd log430-a25-labo0
 ```
 
-### 2. Créez le conteneur Docker
+### 2. Créez le conteneur Docker [DONE]
 Construisez le conteneur Docker `labo0-calculator` et lancez-le de manière itérative.
 ```bash
 docker build -t labo0-calculator .
@@ -40,7 +40,7 @@ docker ps
 > 📝 **NOTE** : Si vous exécutez des conteneurs sur votre ordinateur de développement, vous pouvez utiliser [Docker Desktop](https://www.docker.com/products/docker-desktop/) pour faciliter la gestion des conteneurs. Lorsque vous déployez sur un serveur, vous devrez utiliser l'interface de ligne de commande. Il existe des outils avancés de gestion Docker pour les serveurs, tels que [Portainer](https://www.portainer.io/), mais nous ne les aborderons pas ici. 
 
 ### 3. Créez un environnement virtuel Python sur votre ordinateur
-
+WSL [WIP]
 #### Sur Linux/Mac
 ```bash
 python -m venv .venv/labo0
