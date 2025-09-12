@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Récupérer le code (comme un git clone mais optimisé pour GitHub Actions et avec des tokens d'accès)
+      # Récupérer le code (comme un git clone mais optimisé pour GitHub Actions et avec des tokens d'accès)
       - name: Checkout dépôt
         uses: actions/checkout@v3
 
