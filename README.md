@@ -94,6 +94,8 @@ python3 -m pytest
 
 > réponse : pytest renvoie le chemin vers le fichier où l'erreur est sorti et nous pointe exactement la ligne qui cause l'échec. Ici, NameError, donc addition n'existe pas comme fonction globale. Il faut instancier la classe calculatrice, puis appeler la méthode addition avec son objet.
 
+Nous le constatons par ici:
+
 ```bash
 ========================================== FAILURES ==========================================
 _______________________________________ test_addition ________________________________________
@@ -126,6 +128,21 @@ git push
 Gitlab éxecutera les tests dans son serveur, et ils devront passer également si ils sont corrects.
 
 > 💡 **Question 2** :  Que fait GitLab pendant les étapes de « setup » et « checkout » ? Veuillez inclure la sortie du terminal Gitlab CI dans votre réponse.
+
+> Reponse : Par les étapes setup et checkout, on fait référence aux lignes de codes suivantes: 
+
+```yaml
+      - name: Checkout dépôt
+        uses: actions/checkout@v3
+
+      - name: Installer Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+```
+**checkout**: L'action met à disposition le code source du projet pour que les jobs (build, test, etc.) puissent s’exécuter dans la vm ou le conteneur.
+
+**setup** : GitHub Actions démarre une machine virtuelle Ubuntu, télécharge et configure automatiquement la version 3.12 de Python demandée grâce à l’action setup-python, et ajoute cette installation au PATH afin que les commandes python et pip soient immédiatement utilisables dans les étapes la suivant.
 
 ### 4. Automatiser déploiement continu (CD)
 Après l’exécution des tests, déployez l’application dans un serveur ou machine virtuelle via SSH manuellement:
