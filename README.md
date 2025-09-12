@@ -92,6 +92,23 @@ python3 -m pytest
 
 > 💡 **Question 1** : Si l’un des tests échoue à cause d’un bug, comment pytest signale-t-il l’erreur et aide-t-il à la localiser ? Rédigez un test qui provoque volontairement une erreur, puis montrez la sortie du terminal obtenue.
 
+> réponse : pytest renvoie le chemin vers le fichier où l'erreur est sorti et nous pointe exactement la ligne qui cause l'échec. Ici, NameError, donc addition n'existe pas comme fonction globale. Il faut instancier la classe calculatrice, puis appeler la méthode addition avec son objet.
+
+```bash
+========================================== FAILURES ==========================================
+_______________________________________ test_addition ________________________________________
+
+    def test_addition():
+>       addition()
+        ^^^^^^^^
+E       NameError: name 'addition' is not defined
+
+tests/test_calculator.py:14: NameError
+================================== short test summary info ===================================
+FAILED tests/test_calculator.py::test_addition - NameError: name 'addition' is not defined
+================================ 1 failed, 1 passed in 0.03s =================================
+```
+
 ### 2. Ajoutez une étape à la pipeline CI (intégration continue)
 
 Ajoutez une étape (step) dans `.github/workflows/.gitlab-ci.yml` pour que GitLab exécute les tests automatiquement à chaque push. 
