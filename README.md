@@ -129,20 +129,31 @@ Gitlab éxecutera les tests dans son serveur, et ils devront passer également s
 
 > 💡 **Question 2** :  Que fait GitLab pendant les étapes de « setup » et « checkout » ? Veuillez inclure la sortie du terminal Gitlab CI dans votre réponse.
 
-> Reponse : Par les étapes setup et checkout, on fait référence aux lignes de codes suivantes: 
+**Question 2 – Que font les étapes setup et checkout dans GitHub Actions ?**
 
-```yaml
-      - name: Checkout dépôt
-        uses: actions/checkout@v3
+Lors de l’étape de setup, GitHub Actions prépare l’environnement dans lequel le workflow va s’exécuter. Concrètement, une machine virtuelle Ubuntu est lancée, puis l’action setup-python installe automatiquement la version demandée de Python (ici la 3.12). Cette étape ajoute aussi Python et pip au PATH, ce qui permet de les utiliser directement dans les étapes suivantes sans configuration supplémentaire. On peut le voir dans la sortie du terminal :
 
-      - name: Installer Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.12'
+```bash
+Run actions/setup-python@v4
+  with:
+    python-version: 3.12
+Installed versions
+  Successfully set up CPython (3.12.11)
 ```
-**checkout**: L'action met à disposition le code source du projet pour que les jobs (build, test, etc.) puissent s’exécuter dans la vm ou le conteneur.
 
-**setup** : GitHub Actions démarre une machine virtuelle Ubuntu, télécharge et configure automatiquement la version 3.12 de Python demandée grâce à l’action setup-python, et ajoute cette installation au PATH afin que les commandes python et pip soient immédiatement utilisables dans les étapes la suivant.
+
+Ensuite, l’étape de checkout sert à récupérer le code source du dépôt dans le runner, un peu comme un git clone mais optimisé pour GitHub Actions. L’action configure Git (safe directory, authentification via le GITHUB_TOKEN), supprime les fichiers temporaires et extrait la bonne révision correspondant au commit qui a déclenché le workflow. Cela garantit que l’exécution se fait toujours sur le bon état du projet. La sortie du terminal le montre clairement :
+
+```bash
+Run actions/checkout@v3
+Syncing repository: dev-snely/log430-a25-labo0
+Fetching the repository
+Checking out the ref
+/usr/bin/git log -1 --format='%H'
+```
+
+En résumé, setup prépare l’environnement technique (Python installé et prêt à être utilisé) et checkout met le code du projet à disposition dans ce même environnement, de façon à ce que les étapes suivantes (installation des dépendances, exécution des tests) puissent s’exécuter correctement.
+
 
 ### 4. Automatiser déploiement continu (CD)
 Après l’exécution des tests, déployez l’application dans un serveur ou machine virtuelle via SSH manuellement:
