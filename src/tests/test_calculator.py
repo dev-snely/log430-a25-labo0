@@ -29,3 +29,4 @@ def test_division():
 def test_division_by_zero():
     my_calculator = Calculator()
     assert my_calculator.division(10, 0) == "Erreur : division par zéro"
+    
