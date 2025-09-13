@@ -33,7 +33,7 @@ jobs:
       - name: Checkout du dépôt
         uses: actions/checkout@v4
 
-    - name: Déploiement
-      run: |
-          chmod +x scripts/deploy_local.sh
-          ./scripts/deploy_local.sh
+      - name: Déploiement
+        run: |
+            chmod +x scripts/deploy_local.sh
+            ./scripts/deploy_local.sh
