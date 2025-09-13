@@ -36,46 +36,48 @@ class Calculator:
             self.last_result = "Error"
             return "Erreur : division par zéro"
 
-my_calculator = Calculator()
-print(my_calculator.get_hello_message())
 
-is_running = True
+if __name__ == "__main__":
+    my_calculator = Calculator()
+    print(my_calculator.get_hello_message())
 
-while is_running:
-    print("\n=== Menu ===")
-    print("1. Addition")
-    print("2. Soustraction")
-    print("3. Multiplication")
-    print("4. Division")
-    print("5. Quitter")
+    is_running = True
 
-    choix = input("Choisissez une option (1-5) : ")
+    while is_running:
+        print("\n=== Menu ===")
+        print("1. Addition")
+        print("2. Soustraction")
+        print("3. Multiplication")
+        print("4. Division")
+        print("5. Quitter")
 
-    if choix == "5":
-        print("Au revoir !")
-        is_running = False
-        continue
+        choix = input("Choisissez une option (1-5) : ")
 
-    if choix in ["1", "2", "3", "4"]:
-        try:
-            val_x = float(input("Saisissez la valeur 1 : "))
-            val_y = float(input("Saisissez la valeur 2 : "))
-        except ValueError:
-            print("Erreur : veuillez entrer un nombre valide.")
+        if choix == "5":
+            print("Au revoir !")
+            is_running = False
             continue
 
-        if choix == "1":
-            my_calculator.addition(val_x, val_y)
-            print(f"V1 + V2 = {my_calculator.last_result}")
-        elif choix == "2":
-            my_calculator.subtraction(val_x, val_y)
-            print(f"V1 - V2 = {my_calculator.last_result}")
-        elif choix == "3":
-            my_calculator.multiplication(val_x, val_y)
-            print(f"V1 * V2 = {my_calculator.last_result}")
-        elif choix == "4":
-            result = my_calculator.division(val_x, val_y)
-            print(f"V1 / V2 = {result}")
+        if choix in ["1", "2", "3", "4"]:
+            try:
+                val_x = float(input("Saisissez la valeur 1 : "))
+                val_y = float(input("Saisissez la valeur 2 : "))
+            except ValueError:
+                print("Erreur : veuillez entrer un nombre valide.")
+                continue
 
-    else:
-        print("Option invalide, choisissez entre 1 et 5.")
+            if choix == "1":
+                my_calculator.addition(val_x, val_y)
+                print(f"V1 + V2 = {my_calculator.last_result}")
+            elif choix == "2":
+                my_calculator.subtraction(val_x, val_y)
+                print(f"V1 - V2 = {my_calculator.last_result}")
+            elif choix == "3":
+                my_calculator.multiplication(val_x, val_y)
+                print(f"V1 * V2 = {my_calculator.last_result}")
+            elif choix == "4":
+                result = my_calculator.division(val_x, val_y)
+                print(f"V1 / V2 = {result}")
+
+        else:
+            print("Option invalide, choisissez entre 1 et 5.")
