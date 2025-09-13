@@ -38,5 +38,6 @@ jobs:
 
       - name: Déploiement
         run: |
-            chmod +x scripts/deploy_local.sh
-            ./scripts/deploy_local.sh
+          cd $GITHUB_WORKSPACE
+          chmod +x scripts/deploy_local.sh
+          ./scripts/deploy_local.sh
