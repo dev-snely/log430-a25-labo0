@@ -1,0 +1,39 @@
+name: Continuous Delivery
+on:
+  push:
+    branches: [main, master]
+
+jobs:
+  test:
+    runs-on: self-hosted   # S'exécute directement sur ta VM (runner auto-hébergé)
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Installer requirements.txt
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+
+      - name: Lancer les tests
+        working-directory: src
+        run: |
+          python3 -m pytest
+
+  deploy:
+    runs-on: self-hosted
+    needs: test   # Le déploiement ne s'exécute que si les tests passent
+    steps:
+      - name: Checkout du dépôt
+        uses: actions/checkout@v4
+
+      - name: Lancer le déploiement
+        run: |
+          chmod +x ./deploy.sh
+          ./deploy.sh
