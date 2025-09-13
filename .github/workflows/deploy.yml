@@ -1,4 +1,4 @@
-name: Continuous Delivery
+name: CD Pipeline
 on:
   push:
     branches: [main, master]
@@ -30,6 +30,9 @@ jobs:
     runs-on: self-hosted
     needs: test   # Le déploiement ne s'exécute que si les tests passent
     steps:
+      - name: Lister les fichiers
+        run: ls -R
+
       - name: Checkout du dépôt
         uses: actions/checkout@v4
 
