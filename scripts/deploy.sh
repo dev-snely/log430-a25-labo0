@@ -22,7 +22,7 @@ echo "Exécution des tests..."
 docker run --rm log430-a25-labo0 pytest src/tests
 
 # 3. Optionnel : lancer l'application
-# docker run --rm -it log430-a25-labo0 python src/calculator.py
+# docker run --rm -it log430-a25-labo0 python src/main/calculator.py
 
 # --rm → supprime le conteneur après exécution.
 
