@@ -5,7 +5,7 @@
 docker build -t log430-a25-labo0 .
 
 # 2. Lancer les tests
-docker run --rm -it log430-a25-labo0 pytest src/tests
+docker run --rm log430-a25-labo0 pytest src/tests
 
 # 3. Optionnel : lancer l'application
 # docker run --rm -it log430-a25-labo0 python src/calculator.py
